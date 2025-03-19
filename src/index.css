@@ -1,0 +1,17 @@
+:root {
+  --yellow: #feaf00;
+  --sidebar-background : #F2EAE1;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
