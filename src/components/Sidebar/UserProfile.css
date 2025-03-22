@@ -1,0 +1,19 @@
+#UserProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 3;
+}
+
+.user-img {
+    border-radius: 50%;
+}
+
+.user-fullname {
+    margin-top: 10px;
+}
+
+.user-role {
+    margin-top: 5px;
+    color: var(--yellow);
+}
