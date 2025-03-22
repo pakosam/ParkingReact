@@ -2,11 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
-}
-
-.user-img-div {
-    margin: 0 10px 0;
+    flex: 3;
 }
 
 .user-img {
@@ -14,16 +10,10 @@
 }
 
 .user-fullname {
-    font-weight: bold;
     margin-top: 10px;
 }
 
 .user-role {
     margin-top: 5px;
     color: var(--yellow);
-}
-
-.smaller-sidebar-fonts {
-    font-size: 14px;
-    letter-spacing: 0.4px;
 }

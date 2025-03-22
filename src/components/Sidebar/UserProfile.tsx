@@ -3,10 +3,10 @@ import "./UserProfile.css"
 export const UserProfile = () => {
   return (
     <div id="UserProfile">
-      <div className="user-img-div">
+      <div>
         <img className="user-img" src="/assets/pexels-photo-23790041.png" />
       </div>
-      <div className="user-fullname">
+      <div className="text-bold user-fullname">
         <span>John Doe</span>
       </div>
       <div className="user-role">

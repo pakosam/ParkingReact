@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
 import { SideBar } from "./components/Sidebar/SideBar";
-import { MainBar } from "./components/Container/MainBar";
+import { ParkingView } from "./components/Container/ParkingView";
 
 function App() {
   return (
-    <>
+    <div className="page">
       <SideBar />
-      <MainBar />
-    </>
+      <ParkingView />
+    </div>
   );
 }
 
