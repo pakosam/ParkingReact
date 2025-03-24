@@ -1,6 +1,7 @@
-import { CarIcon } from "../../../assets/icons/CarIcon";
-import { LogoutIcon } from "../../../assets/icons/LogoutIcon";
-import { PersonIcon } from "../../../assets/icons/PersonIcon";
+import { CarIcon } from "../../assets/icons/CarIcon";
+import { LogoutIcon } from "../../assets/icons/LogoutIcon";
+import { PersonIcon } from "../../assets/icons/PersonIcon";
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 export const Navigation = () => {
@@ -13,7 +14,9 @@ export const Navigation = () => {
               <PersonIcon />
             </div>
             <div className="navbar-text">
-              <span>Employees</span>
+              <span>
+                <Link to="/employees">Employees</Link>
+              </span>
             </div>
           </div>
           <div className="single-entity">
@@ -22,7 +25,7 @@ export const Navigation = () => {
             </div>
             <div className="navbar-text">
               <span>
-                Parkings
+                <Link to="parkings">Parkings</Link>
               </span>
             </div>
           </div>
