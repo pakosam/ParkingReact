@@ -12,6 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SideBar />}>
+          <Route path="/" element={<Navigate to="/parkings" replace />} />
           <Route path="/parkings" element={<ParkingView />} />
           <Route path="/employees" element={<EmployeeView />} />
           <Route path="*" element={<Navigate to="/parkings" replace />} />

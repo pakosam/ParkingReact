@@ -1,34 +1,36 @@
-import { CarIcon } from "../../assets/icons/CarIcon";
 import { LogoutIcon } from "../../assets/icons/LogoutIcon";
-import { PersonIcon } from "../../assets/icons/PersonIcon";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
+import { sidebarItems } from "./sidebarItems/sidebarItems";
+import { useLocation } from "react-router-dom";
 
 export const Navigation = () => {
+  const location = useLocation();
+
   return (
     <>
       <div id="Navigation">
         <div className="entities">
-          <div className="single-entity">
-            <div className="navbar-icon">
-              <PersonIcon />
-            </div>
-            <div className="navbar-text">
-              <span>
-                <Link to="/employees">Employees</Link>
-              </span>
-            </div>
-          </div>
-          <div className="single-entity">
-            <div className="navbar-icon">
-              <CarIcon />
-            </div>
-            <div className="navbar-text">
-              <span>
-                <Link to="parkings">Parkings</Link>
-              </span>
-            </div>
-          </div>
+          {sidebarItems.map((item, index) => {
+            const { url, name, Icon } = item;
+            return (
+              <div
+                className={`single-entity ${
+                  location.pathname === url ? "active" : ""
+                }`}
+                key={index}
+              >
+                <div className="navbar-icon">
+                  <Icon />
+                </div>
+                <div className="navbar-text">
+                  <span>
+                    <Link to={url}>{name}</Link>
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="logout-navbar">
