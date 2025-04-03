@@ -1,0 +1,115 @@
+#SignIn {
+    width: 100%;
+    position: relative;
+    background-color: var(--yellow);
+}
+
+.main-content {
+    position: absolute;
+    position-area: center;
+    height: 550px;
+    width: 475px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.parking-project-div {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parking-project-text {
+    border-left: 7px solid var(--yellow);
+    padding-left: 10px;
+    margin-bottom: 0;
+    font-size: 39px;
+}
+
+.info {
+    flex: 4;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info h4 {
+    margin-bottom: 0;
+    font-size: 27px;
+    letter-spacing: 0.5px;
+}
+
+.info .info-sentence {
+    margin-top: 8px;
+    font-size: 17px;
+    color: #6C6C6C;
+}
+
+.info .info-sentence span {
+    letter-spacing: 0.4px;
+}
+
+.form-div {
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 17px;
+    color: #6C6C6C;
+    letter-spacing: 0.4px;
+}
+
+input {
+    margin-bottom: 20px;
+    height: 44px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+}
+
+input::placeholder {
+    font-size: 15px;
+    color: #CDCDCD;
+    padding-left: 15px;
+}
+
+.signinbtn {
+    margin-top: 20px;
+    height: 44px;
+    background-color: #FEAF00;
+    color: #ffffff;
+    border: 1px solid;
+    letter-spacing: 0.4px;
+    border-radius: 4px;
+}
+
+.psw-opt {
+    flex: 4;
+    text-align: center;
+    font-size: 17px;
+}
+
+.question {
+    color: #6C6C6C;
+}
+
+.action {
+    margin-left: 5px;
+    color: #FEAF00;
+    text-decoration: underline;
+}

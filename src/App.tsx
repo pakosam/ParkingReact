@@ -1,14 +1,18 @@
-import React from "react";
-import "./App.css";
-import { SideBar } from "./components/Sidebar/SideBar";
-import { ParkingView } from "./components/Container/ParkingView";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { SignIn } from "./pages/SignIn";
 
 function App() {
   return (
-    <div className="page">
-      <SideBar />
-      <ParkingView />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route path="/" element={<Navigate to="/signin" replace />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
