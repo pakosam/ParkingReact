@@ -1,0 +1,44 @@
+.search-bar-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 8px 20px;
+}
+
+.back-arrow {
+  height: 18px;
+}
+
+.search-and-notification {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.ring-icon {
+  height: 20px;
+  margin-left: 20px;
+}
+
+.search-input {
+  height: 37px;
+  width: 212px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.search-input {
+  background: url("../../../public/assets/Loop-icon.svg") no-repeat scroll 200px
+    12px;
+  background-size: 14px;
+  padding-left: 12px;
+}
+
+.search-input,
+.search-input::placeholder {
+  font-size: 17px;
+  color: #c4c4c4;
+}
