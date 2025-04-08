@@ -1,0 +1,27 @@
+.parking-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 2px 20px;
+}
+
+.switch-and-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switch-and-btn .switch-icon {
+  margin-right: 30px;
+}
+
+.add-btn {
+  background-color: #feaf00;
+  border: 1px solid #feaf00;
+  color: #ffffff;
+  width: 199px;
+  height: 44px;
+  border-radius: 5px;
+}

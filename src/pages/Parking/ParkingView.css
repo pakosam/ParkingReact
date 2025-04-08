@@ -1,0 +1,56 @@
+#ParkingView {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  flex: 1;
+}
+
+.parking-table-container {
+  flex: 5;
+  margin-top: 5px;
+  padding: 0 20px;
+}
+
+.table-container {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  tr {
+    background: white;
+    border-top: 10px solid #f4f4f4;
+    border-bottom: 10px solid #f4f4f4;
+
+    td:first-child {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+      .entity-img {
+        vertical-align: middle;
+      }
+      div {
+        justify-self: left;
+      }
+    }
+
+    td:last-child {
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+  }
+  .header-row th {
+    padding: 5px;
+    background-color: #f4f4f4;
+    font-weight: 700;
+    font-size: 15px;
+    color: #acacac;
+  }
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+.parking-image {
+  width: 65px;
+  height: 55px;
+}

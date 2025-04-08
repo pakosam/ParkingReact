@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { SideBar } from "./components/Sidebar/SideBar";
-import { ParkingView } from "./pages/ParkingView";
+import { ParkingView } from "./pages/Parking/ParkingView";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
