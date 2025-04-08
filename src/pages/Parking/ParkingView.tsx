@@ -1,10 +1,28 @@
-import { parkings } from "./parkings";
 import "./ParkingView.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
+import React, { useEffect, useState } from "react";
+import { IParkings } from "../../api/apiInterface";
 
 export const ParkingView = () => {
+
+  const [parkings, setParkings] = useState<IParkings[]>();
+
+  useEffect(() => {
+    fetch('https://localhost:7185/api/Parkings', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json()) // Convert the response to JSON
+      .then((json) => setParkings(json)) // Set the fetched data into state
+      .catch((error) => console.error('Error fetching data:', error)); // Catch any fetch errors
+  }, []);
+
+  if(!parkings) return null;
+
   return (
     <div id="ParkingView">
       <SearchBar />
@@ -28,7 +46,7 @@ export const ParkingView = () => {
                   <div>
                     <img
                       className="parking-image"
-                      src={image}
+                      src={image || "/assets/parkingplace.png"}
                     />
                   </div>
                 </td>
