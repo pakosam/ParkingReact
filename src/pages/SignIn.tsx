@@ -1,6 +1,48 @@
 import "./SignIn.css";
+import { FormEvent, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const submitBtn = (event: FormEvent) => {
+    event.preventDefault();
+
+    fetch("https://localhost:7185/api/Authorizations/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Login failed");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        const bearerToken = json.token;
+        localStorage.setItem("loginData", bearerToken);
+        if(json) {
+          navigate('/parkings')
+        }
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
+
+    console.log(username);
+    console.log(password);
+    console.log("Form submitted successfully");
+
+  };
+
   return (
     <>
       <div id="SignIn">

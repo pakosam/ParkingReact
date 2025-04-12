@@ -4,10 +4,16 @@ import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
 import React, { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 
 export const ParkingView = () => {
 
   const [parkings, setParkings] = useState<IParkings[]>();
+<<<<<<< HEAD
+=======
+  const bearerToken = localStorage.getItem("loginData") || ""
+  const navigate = useNavigate()
+>>>>>>> dc54ba2 (Navigation added)
 
   useEffect(() => {
     fetch('https://localhost:7185/api/Parkings', {
@@ -16,9 +22,22 @@ export const ParkingView = () => {
         'Content-Type': 'application/json',
       },
     })
+<<<<<<< HEAD
       .then(response => response.json()) // Convert the response to JSON
       .then((json) => setParkings(json)) // Set the fetched data into state
       .catch((error) => console.error('Error fetching data:', error)); // Catch any fetch errors
+=======
+      .then(response => {
+        console.log(response)
+        if(response.ok)
+          return response.json()
+      }) 
+      .then((data) => setParkings(data)) 
+      .catch((error) => console.error('Error fetching data:', error)); 
+
+      if (bearerToken == "")
+        navigate('/signin')
+>>>>>>> dc54ba2 (Navigation added)
   }, []);
 
   if(!parkings) return null;
