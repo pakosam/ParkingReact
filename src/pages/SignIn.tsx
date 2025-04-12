@@ -1,5 +1,5 @@
 import "./SignIn.css";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
@@ -36,54 +36,57 @@ export const SignIn = () => {
       .catch((error) => {
         console.error("Login error:", error);
       });
-
-    console.log(username);
-    console.log(password);
-    console.log("Form submitted successfully");
-
   };
 
   return (
-    <>
-      <div id="SignIn">
+      <div id="Sign-In">
         <div className="main-content">
-          <div className="parking-project-div">
-            <h3 className="parking-project-text">PARKING PROJECT</h3>
+          <div className="header">
+            <h3>PARKING PROJECT</h3>
           </div>
-          <div className="info">
+          <div className="sign-in-info">
             <h4>SIGN IN</h4>
-            <div className="info-sentence">
+            <div className="sentence">
               <span>Enter your credentials to access your account</span>
             </div>
           </div>
-          <div className="form-div">
-            <form>
-              <label htmlFor="email">Email</label>
+          <div className="form-container">
+            <form className="form" onSubmit={submitBtn}>
+              <label className="label" htmlFor="username">Username</label>
               <input
                 type="text"
-                placeholder="Enter your email"
-                name="email"
+                placeholder="Enter your username"
+                name="username"
+                className="input"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
 
-              <label htmlFor="psw">Password</label>
+              <label className="label" htmlFor="password">Password</label>
               <input
                 type="password"
                 placeholder="Enter your password"
-                name="psw"
+                name="password"
+                className="input"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 required
               />
-
-              <button type="submit" className="signinbtn">
+              <button type="submit" className="sign-in-btn">
                 SIGN IN
               </button>
             </form>
           </div>
-          <div className="psw-opt">
-            <span className="question">Forgot your password?<span className="action">Reset password</span></span>
+          <div className="password-footer">
+            <span className="reminder-text">
+              Forgot your password?
+              <span className="interactive-text">Reset password</span>
+            </span>
           </div>
         </div>
       </div>
-    </>
   );
 };

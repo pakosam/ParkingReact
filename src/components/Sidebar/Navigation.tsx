@@ -1,5 +1,5 @@
 import { LogoutIcon } from "../../assets/icons/LogoutIcon";
-import { Link, Location } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 import { sidebarItems } from "./sidebarItems/sidebarItems";
 import { useLocation } from "react-router-dom";

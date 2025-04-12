@@ -4,7 +4,7 @@ import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
 import React, { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const ParkingView = () => {
 
@@ -28,14 +28,13 @@ export const ParkingView = () => {
       .catch((error) => console.error('Error fetching data:', error)); // Catch any fetch errors
 =======
       .then(response => {
-        console.log(response)
         if(response.ok)
           return response.json()
       }) 
       .then((data) => setParkings(data)) 
       .catch((error) => console.error('Error fetching data:', error)); 
 
-      if (bearerToken == "")
+      if (bearerToken === "")
         navigate('/signin')
 >>>>>>> dc54ba2 (Navigation added)
   }, []);
@@ -66,6 +65,7 @@ export const ParkingView = () => {
                     <img
                       className="parking-image"
                       src={image || "/assets/parkingplace.png"}
+                      alt="real-life-parking"
                     />
                   </div>
                 </td>

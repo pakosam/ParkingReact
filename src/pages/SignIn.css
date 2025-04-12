@@ -1,12 +1,15 @@
-#SignIn {
+#Sign-In {
     width: 100%;
-    position: relative;
     background-color: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-content {
-    position: absolute;
-    position-area: center;
+    display: flex;
+    flex-direction: column;
     height: 550px;
     width: 475px;
     background-color: #ffffff;
@@ -15,21 +18,21 @@
     border-radius: 15px;
 }
 
-.parking-project-div {
+.header {
     flex: 4;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.parking-project-text {
+h3 {
     border-left: 7px solid var(--yellow);
     padding-left: 10px;
     margin-bottom: 0;
     font-size: 39px;
 }
 
-.info {
+.sign-in-info {
     flex: 4;
     justify-items: center;
     display: flex;
@@ -38,23 +41,23 @@
     justify-content: space-evenly;
 }
 
-.info h4 {
+.sign-in-info h4 {
     margin-bottom: 0;
     font-size: 27px;
     letter-spacing: 0.5px;
 }
 
-.info .info-sentence {
+.sign-in-info .sentence {
     margin-top: 8px;
     font-size: 17px;
     color: #6C6C6C;
 }
 
-.info .info-sentence span {
+.sign-in-info .sentence span {
     letter-spacing: 0.4px;
 }
 
-.form-div {
+.form-container {
     flex: 10;
     display: flex;
     flex-direction: column;
@@ -62,33 +65,33 @@
     justify-content: space-between;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
 
-label {
+.label {
     margin-bottom: 5px;
     font-size: 17px;
     color: #6C6C6C;
     letter-spacing: 0.4px;
 }
 
-input {
+.input {
     margin-bottom: 20px;
     height: 44px;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
 }
 
-input::placeholder {
+.input::placeholder {
     font-size: 15px;
     color: #CDCDCD;
     padding-left: 15px;
 }
 
-.signinbtn {
+.sign-in-btn {
     margin-top: 20px;
     height: 44px;
     background-color: #FEAF00;
@@ -98,17 +101,17 @@ input::placeholder {
     border-radius: 4px;
 }
 
-.psw-opt {
+.password-footer {
     flex: 4;
     text-align: center;
     font-size: 17px;
 }
 
-.question {
+.reminder-text {
     color: #6C6C6C;
 }
 
-.action {
+.interactive-text {
     margin-left: 5px;
     color: #FEAF00;
     text-decoration: underline;
