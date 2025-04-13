@@ -4,31 +4,23 @@ import { EmployeeActions } from "./EmployeeActions";
 import { EmployeeRowActions } from "./EmployeeRowActions";
 import React, { useEffect, useState } from "react";
 import { IEmployees } from "../../api/apiInterface";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
+import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const EmployeeView = () => {
 
   const [employees, setEmployees] = useState<IEmployees[]>();
-  const bearerToken = localStorage.getItem("loginData") || ""
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('https://localhost:7185/api/Employees', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if(response.ok)
-          return response.json()
-      }) 
-      .then((data) => setEmployees(data)) 
-      .catch((error) => console.error('Error fetching data:', error)); 
-
-      if (bearerToken === "")
-        navigate('/signin')
+    employeeRepository.getAllEmployees()
+      .then(data => {
+        console.log("Fetched data: ", data)
+        setEmployees(data)
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error)
+      })
   }, []);
 
   if(!employees) return null;

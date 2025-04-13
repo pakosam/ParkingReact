@@ -4,47 +4,30 @@ import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
 import React, { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
+import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const ParkingView = () => {
-
   const [parkings, setParkings] = useState<IParkings[]>();
-<<<<<<< HEAD
-=======
-  const bearerToken = localStorage.getItem("loginData") || ""
   const navigate = useNavigate()
->>>>>>> dc54ba2 (Navigation added)
 
   useEffect(() => {
-    fetch('https://localhost:7185/api/Parkings', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-<<<<<<< HEAD
-      .then(response => response.json()) // Convert the response to JSON
-      .then((json) => setParkings(json)) // Set the fetched data into state
-      .catch((error) => console.error('Error fetching data:', error)); // Catch any fetch errors
-=======
-      .then(response => {
-        if(response.ok)
-          return response.json()
-      }) 
-      .then((data) => setParkings(data)) 
-      .catch((error) => console.error('Error fetching data:', error)); 
-
-      if (bearerToken === "")
-        navigate('/signin')
->>>>>>> dc54ba2 (Navigation added)
+    parkingRepository.getAllParkings()
+      .then(data => {
+        console.log("Fetched data: ", data)
+        setParkings(data)
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error)
+      })
   }, []);
 
-  if(!parkings) return null;
+  if (!parkings) return null;
 
   return (
     <div id="ParkingView">
       <SearchBar />
-      <ParkingActions btnText="ADD NEW PARKING"/>
+      <ParkingActions btnText="ADD NEW PARKING" />
       <div className="parking-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -57,7 +40,14 @@ export const ParkingView = () => {
             <th></th>
           </tr>
           {parkings.map((parking, index) => {
-            const {image, name, numberOfPlaces, openingTime, closingTime, pricePerHour} = parking;
+            const {
+              image,
+              name,
+              numberOfPlaces,
+              openingTime,
+              closingTime,
+              pricePerHour,
+            } = parking;
             return (
               <tr key={`${index}${name}${numberOfPlaces}`}>
                 <td>
