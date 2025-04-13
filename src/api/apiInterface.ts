@@ -6,3 +6,10 @@ export interface IParkings {
   closingTime: string;
   pricePerHour: number;
 }
+
+export interface IEmployees {
+  image?: string;
+  fullName: string;
+  birthDate: string;
+  parkingId: number;
+}

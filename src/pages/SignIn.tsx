@@ -42,7 +42,7 @@ export const SignIn = () => {
       <div id="Sign-In">
         <div className="main-content">
           <div className="header">
-            <h3>PARKING PROJECT</h3>
+            <h3 className="header-name">PARKING PROJECT</h3>
           </div>
           <div className="sign-in-info">
             <h4>SIGN IN</h4>

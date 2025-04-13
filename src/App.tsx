@@ -5,12 +5,14 @@ import { ParkingView } from "./pages/Parking/ParkingView";
 /*import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";*/
-import { EmployeeView } from "./pages/EmployeeView";
 import { Register } from "./pages/Register";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { SignIn } from "./pages/SignIn";
+//import { ParkingsLayout } from "./pages/Parking/ParkingsLayout";
+import { EmployeesLayout } from "./pages/Employee/EmployeesLayout";
+import { EmployeeView } from "./pages/Employee/EmployeeView";
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
         <Route path="/">
           <Route path="/" element={<Navigate to="/signin" replace />} />
           <Route path="/signin" element={<SignIn />} />
+        </Route>
+
+        <Route path="/employees" element={<EmployeesLayout />}>
+          <Route index element={<EmployeeView />} />
         </Route>
       </Routes>
     </BrowserRouter>

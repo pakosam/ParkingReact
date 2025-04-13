@@ -1,21 +1,21 @@
-#ParkingView {
+#EmployeeView {
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
   flex: 1;
 }
 
-.parking-table-container {
+.employee-table-container {
   flex: 5;
   margin-top: 5px;
   padding: 0 20px;
-  overflow-y: auto;
+  overflow-y: scroll;
 
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.parking-table-container::-webkit-scrollbar {
+.employee-table-container::-webkit-scrollbar {
   display: none;
 }
 
@@ -58,7 +58,7 @@
   }
 }
 
-.parking-image {
+.employee-image {
   width: 65px;
   height: 55px;
 }
