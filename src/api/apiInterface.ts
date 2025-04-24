@@ -1,4 +1,5 @@
 export interface IParkings {
+  id: number
   image?: string;
   name: string;
   numberOfPlaces: number;
@@ -8,6 +9,7 @@ export interface IParkings {
 }
 
 export interface IEmployees {
+  id: number
   image?: string;
   fullName: string;
   birthDate: string;

@@ -15,7 +15,6 @@ export const EmployeeView = () => {
   useEffect(() => {
     employeeRepository.getAllEmployees()
       .then(data => {
-        console.log("Fetched data: ", data)
         setEmployees(data)
       })
       .catch(error => {

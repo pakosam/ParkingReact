@@ -1,10 +1,10 @@
 import { IParkings } from "../api/apiInterface";
 import { axiosInstance } from "../api/axiosInstance";
 
-class ParkingRepositoryClass {
+class ParkingRepository {
   async getAllParkings(): Promise<IParkings[]> {
     const bearerToken = localStorage.getItem("loginData") || "";
-    const response = await axiosInstance.get<IParkings[]>("Parkings", {
+    const response = await axiosInstance.get<IParkings[]>("/parkings", {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },
@@ -13,4 +13,4 @@ class ParkingRepositoryClass {
   }
 }
 
-export const parkingRepository = new ParkingRepositoryClass();
+export const parkingRepository = new ParkingRepository();

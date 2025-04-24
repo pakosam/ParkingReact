@@ -14,7 +14,6 @@ export const ParkingView = () => {
   useEffect(() => {
     parkingRepository.getAllParkings()
       .then(data => {
-        console.log("Fetched data: ", data)
         setParkings(data)
       })
       .catch(error => {

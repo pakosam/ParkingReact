@@ -1,10 +1,10 @@
 import { IEmployees } from "../api/apiInterface";
 import { axiosInstance } from "../api/axiosInstance";
 
-class EmployeeRepositoryClass {
+class EmployeeRepository {
   async getAllEmployees(): Promise<IEmployees[]> {
     const bearerToken = localStorage.getItem("loginData") || "";
-    const response = await axiosInstance.get<IEmployees[]>("Employees", {
+    const response = await axiosInstance.get<IEmployees[]>("/employees", {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },
@@ -13,4 +13,4 @@ class EmployeeRepositoryClass {
   }
 }
 
-export const employeeRepository = new EmployeeRepositoryClass();
+export const employeeRepository = new EmployeeRepository();
