@@ -10,7 +10,7 @@
 .main-content {
     display: flex;
     flex-direction: column;
-    height: 97%;  
+    height: 720px;  
     width: 475px;
     background-color: #ffffff;
     border-radius: 15px;
@@ -27,7 +27,7 @@
     border-left: 7px solid var(--yellow);
     padding-left: 10px;
     margin-bottom: 0;
-    font-size: 39px;
+    font-size: 38px;
 }
 
 .register-info {
@@ -41,13 +41,13 @@
 
 .register-info h4 {
     margin-bottom: 0;
-    font-size: 27px;
+    font-size: 30px;
     letter-spacing: 0.5px;
 }
 
 .register-info .sentence {
     margin-top: 8px;
-    font-size: 17px;
+    font-size: 16px;
     color: #6C6C6C;
 }
 
