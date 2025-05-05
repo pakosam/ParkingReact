@@ -6,17 +6,14 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { EmployeeView } from "./pages/EmployeeView";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SideBar />}>
-          <Route path="/" element={<Navigate to="/parkings" replace />} />
-          <Route path="/parkings" element={<ParkingView />} />
-          <Route path="/employees" element={<EmployeeView />} />
-          <Route path="*" element={<Navigate to="/parkings" replace />} />
-        </Route>
+        <Route path="/" element={<Navigate to="/registration" replace />} />
+        <Route path="/registration" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
