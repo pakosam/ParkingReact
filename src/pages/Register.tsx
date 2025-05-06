@@ -42,7 +42,7 @@ export const Register = () => {
       })
       .then((data) => {
         console.log("Response:", data);
-        navigate("/login");
+        navigate("/signin");
       })
       .catch((error) => {
         console.error("Login error:", error.message);

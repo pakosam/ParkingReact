@@ -4,29 +4,29 @@ import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
 import React, { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
+import { data, useNavigate } from "react-router-dom";
+import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const ParkingView = () => {
-
   const [parkings, setParkings] = useState<IParkings[]>();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('https://localhost:7185/api/Parkings', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json()) // Convert the response to JSON
-      .then((json) => setParkings(json)) // Set the fetched data into state
-      .catch((error) => console.error('Error fetching data:', error)); // Catch any fetch errors
+    parkingRepository.getAllParkings()
+      .then(data => {
+        setParkings(data)
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error)
+      })
   }, []);
 
-  if(!parkings) return null;
+  if (!parkings) return null;
 
   return (
     <div id="ParkingView">
       <SearchBar />
-      <ParkingActions btnText="ADD NEW PARKING"/>
+      <ParkingActions btnText="ADD NEW PARKING" />
       <div className="parking-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -39,7 +39,14 @@ export const ParkingView = () => {
             <th></th>
           </tr>
           {parkings.map((parking, index) => {
-            const {image, name, numberOfPlaces, openingTime, closingTime, pricePerHour} = parking;
+            const {
+              image,
+              name,
+              numberOfPlaces,
+              openingTime,
+              closingTime,
+              pricePerHour,
+            } = parking;
             return (
               <tr key={`${index}${name}${numberOfPlaces}`}>
                 <td>
@@ -47,6 +54,7 @@ export const ParkingView = () => {
                     <img
                       className="parking-image"
                       src={image || "/assets/parkingplace.png"}
+                      alt="real-life-parking"
                     />
                   </div>
                 </td>
