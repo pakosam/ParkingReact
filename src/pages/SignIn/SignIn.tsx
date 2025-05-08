@@ -1,41 +1,24 @@
 import "./SignIn.css";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signInRepository } from "../../repositories/signinRepository";
 
 export const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const submitBtn = (event: FormEvent) => {
+  const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
-    fetch("https://localhost:7185/api/Authorizations/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Login failed");
-        }
-        return response.json();
-      })
-      .then((json) => {
-        const bearerToken = json.token;
-        localStorage.setItem("loginData", bearerToken);
-        if(json) {
-          navigate('/parkings')
-        }
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-      });
+    try {
+      const result = await signInRepository.signIn({ username, password });
+      if (result) {
+        navigate("/parkings");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
   return (

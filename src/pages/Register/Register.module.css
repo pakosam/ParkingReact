@@ -1,4 +1,4 @@
-#Register {
+.Register {
     width: 100%;
     background-color: var(--yellow);
     display: flex;

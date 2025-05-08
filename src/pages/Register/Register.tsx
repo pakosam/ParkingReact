@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
+import styles from "./Register.module.css";
+import { registerRepository } from "../../repositories/registerRepository";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -10,124 +11,104 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const submitBtn = (event: FormEvent) => {
+  const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
-    fetch("https://localhost:7185/api/Authorizations/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    try {
+      const result = await registerRepository.register({
         name,
         surname,
         birthdate,
         username,
         password,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.text().then((text) => {
-            throw new Error(text);
-          });
-        }
-
-        const contentType = response.headers.get("content-type") || "";
-        if (contentType.includes("application/json")) {
-          return response.json();
-        } else {
-          return response.text();
-        }
-      })
-      .then((data) => {
-        console.log("Response:", data);
-        navigate("/signin");
-      })
-      .catch((error) => {
-        console.error("Login error:", error.message);
       });
+      if (result) {
+        navigate("/signin");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
   return (
-    <div id="Register">
-      <div className="main-content">
-        <div className="header">
-          <h3 className="header-name">PARKING PROJECT</h3>
+    <div className={styles["Register"]}>
+      <div className={styles["main-content"]}>
+        <div className={styles.header}>
+          <h3 className={styles["header-name"]}>PARKING PROJECT</h3>
         </div>
-        <div className="register-info">
+        <div className={styles["register-info"]}>
           <h4>REGISTER</h4>
-          <div className="sentence">
+          <div className={styles.sentence}>
             <span>Enter your data to register</span>
           </div>
         </div>
-        <div className="form-container">
-          <form className="form" onSubmit={submitBtn}>
-            <label className="label" htmlFor="name">
+        <div className={styles["form-container"]}>
+          <form className={styles.form} onSubmit={submitBtn}>
+            <label className={styles.label} htmlFor="name">
               Name
             </label>
             <input
               type="text"
               placeholder="Enter your name"
               name="name"
-              className="input"
+              className={styles.input}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
 
-            <label className="label" htmlFor="surname">
+            <label className={styles.label} htmlFor="surname">
               Surname
             </label>
             <input
               type="text"
               placeholder="Enter your surname"
               name="surname"
-              className="input"
+              className={styles.input}
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               required
             />
 
-            <label className="label" htmlFor="birthdate">
+            <label className={styles.label} htmlFor="birthdate">
               Birthdate
             </label>
             <input
               type="date"
               placeholder="Enter your birthdate"
               name="birthdate"
-              className="input"
+              className={styles.input}
               value={birthdate}
               onChange={(e) => setBirthdate(e.target.value)}
               required
             />
 
-            <label className="label" htmlFor="username">
+            <label className={styles.label} htmlFor="username">
               Username
             </label>
             <input
               type="text"
               placeholder="Enter your username"
               name="username"
-              className="input"
+              className={styles.input}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
 
-            <label className="label" htmlFor="password">
+            <label className={styles.label} htmlFor="password">
               Password
             </label>
             <input
               type="password"
               placeholder="Enter your password"
               name="password"
-              className="input"
+              className={styles.input}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
 
-            <button type="submit" className="register-btn">
+            <button type="submit" className={styles["register-btn"]}>
               REGISTER
             </button>
           </form>
