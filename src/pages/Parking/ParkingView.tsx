@@ -9,7 +9,6 @@ import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const ParkingView = () => {
   const [parkings, setParkings] = useState<IParkings[]>();
-  const navigate = useNavigate()
 
   useEffect(() => {
     parkingRepository.getAllParkings()
@@ -20,6 +19,11 @@ export const ParkingView = () => {
         console.error("Error fetching data: ", error)
       })
   }, []);
+
+  const deleteBtn = async (id: number) => {
+      await parkingRepository.deleteParking({ id });
+      setParkings((prev) => prev?.filter((parking) => parking.id !== id));
+    };
 
   if (!parkings) return null;
 
@@ -63,7 +67,7 @@ export const ParkingView = () => {
                 <td>{openingTime}</td>
                 <td>{closingTime}</td>
                 <td>{pricePerHour}</td>
-                <ParkingRowActions />
+                <ParkingRowActions id={parking.id} onDeleteClick={deleteBtn} />
               </tr>
             );
           })}

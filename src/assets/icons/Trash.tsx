@@ -1,6 +1,7 @@
-export const Trash = () => {
+export const Trash: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg
+      {...props}
       width="16"
       height="18"
       viewBox="0 0 16 18"

@@ -8,26 +8,30 @@ import { data, useNavigate } from "react-router-dom";
 import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const EmployeeView = () => {
-
   const [employees, setEmployees] = useState<IEmployees[]>();
-  const navigate = useNavigate()
 
   useEffect(() => {
-    employeeRepository.getAllEmployees()
-      .then(data => {
-        setEmployees(data)
+    employeeRepository
+      .getAllEmployees()
+      .then((data) => {
+        setEmployees(data);
       })
-      .catch(error => {
-        console.error("Error fetching data: ", error)
-      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   }, []);
 
-  if(!employees) return null;
+  const deleteBtn = async (id: number) => {
+    await employeeRepository.deleteEmployee({ id });
+    setEmployees((prev) => prev?.filter((employee) => employee.id !== id));
+  };
+
+  if (!employees) return null;
 
   return (
     <div id="EmployeeView">
       <SearchBar />
-      <EmployeeActions btnText="ADD NEW EMPLOYEE"/>
+      <EmployeeActions btnText="ADD NEW EMPLOYEE" />
       <div className="employee-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -38,7 +42,7 @@ export const EmployeeView = () => {
             <th></th>
           </tr>
           {employees.map((employee, index) => {
-            const {image, fullName, birthDate, parkingId} = employee;
+            const { image, fullName, birthDate, parkingId } = employee;
             return (
               <tr key={`${index}${fullName}${birthDate}`}>
                 <td>
@@ -53,7 +57,7 @@ export const EmployeeView = () => {
                 <td>{fullName}</td>
                 <td>{birthDate}</td>
                 <td>{parkingId}</td>
-                <EmployeeRowActions />
+                <EmployeeRowActions id={employee.id} onDeleteClick={deleteBtn} />
               </tr>
             );
           })}
