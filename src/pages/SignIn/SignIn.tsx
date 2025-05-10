@@ -1,7 +1,7 @@
 import "./SignIn.css";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInRepository } from "../../repositories/signinRepository";
+import { userRepository } from "../../repositories/userRepository";
 
 export const SignIn = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ export const SignIn = () => {
     event.preventDefault();
 
     try {
-      const result = await signInRepository.signIn({ username, password });
+      const result = await userRepository.signIn({ username, password });
       if (result) {
         navigate("/parkings");
       }
