@@ -1,4 +1,8 @@
-export const DeleteIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({onClick}) => {
+interface IDeleteIcon {
+  onClick: () => void;
+}
+
+export const DeleteIcon: React.FC<IDeleteIcon> = ({onClick}) => {
   return (
     <svg
       onClick={onClick}

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
-import { registerRepository } from "../../repositories/registerRepository";
+import { userRepository } from "../../repositories/userRepository";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -15,7 +15,7 @@ export const Register = () => {
     event.preventDefault();
 
     try {
-      const result = await registerRepository.register({
+      const result = await userRepository.register({
         name,
         surname,
         birthdate,
