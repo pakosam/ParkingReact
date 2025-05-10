@@ -1,7 +1,7 @@
-export const Trash: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export const DeleteIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({onClick}) => {
   return (
     <svg
-      {...props}
+      onClick={onClick}
       width="16"
       height="18"
       viewBox="0 0 16 18"

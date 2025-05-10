@@ -11,19 +11,18 @@ export const ParkingView = () => {
   const [parkings, setParkings] = useState<IParkings[]>();
 
   useEffect(() => {
-    parkingRepository.getAllParkings()
-      .then(data => {
-        setParkings(data)
-      })
-      .catch(error => {
-        console.error("Error fetching data: ", error)
-      })
+    const allParkings = async () => {
+      const data = await parkingRepository.getAllParkings();
+      setParkings(data);
+    };
+
+    allParkings();
   }, []);
 
-  const deleteBtn = async (id: number) => {
-      await parkingRepository.deleteParking({ id });
-      setParkings((prev) => prev?.filter((parking) => parking.id !== id));
-    };
+  const deleteParking = async (id: number) => {
+    await parkingRepository.deleteParking({ id });
+    setParkings((prev) => prev?.filter((parking) => parking.id !== id));
+  };
 
   if (!parkings) return null;
 
@@ -67,7 +66,9 @@ export const ParkingView = () => {
                 <td>{openingTime}</td>
                 <td>{closingTime}</td>
                 <td>{pricePerHour}</td>
-                <ParkingRowActions id={parking.id} onDeleteClick={deleteBtn} />
+                <ParkingRowActions
+                  onDeleteClick={() => deleteParking(parking.id)}
+                />
               </tr>
             );
           })}

@@ -11,17 +11,15 @@ export const EmployeeView = () => {
   const [employees, setEmployees] = useState<IEmployees[]>();
 
   useEffect(() => {
-    employeeRepository
-      .getAllEmployees()
-      .then((data) => {
-        setEmployees(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
+    const allEmployees = async () => {
+      const data = await employeeRepository.getAllEmployees();
+      setEmployees(data);
+    };
+
+    allEmployees();
   }, []);
 
-  const deleteBtn = async (id: number) => {
+  const deleteEmployee = async (id: number) => {
     await employeeRepository.deleteEmployee({ id });
     setEmployees((prev) => prev?.filter((employee) => employee.id !== id));
   };
@@ -57,7 +55,9 @@ export const EmployeeView = () => {
                 <td>{fullName}</td>
                 <td>{birthDate}</td>
                 <td>{parkingId}</td>
-                <EmployeeRowActions id={employee.id} onDeleteClick={deleteBtn} />
+                <EmployeeRowActions
+                  onDeleteClick={() => deleteEmployee(employee.id)}
+                />
               </tr>
             );
           })}
