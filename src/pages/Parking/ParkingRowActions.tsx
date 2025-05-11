@@ -1,13 +1,17 @@
 import { Pen } from "../../assets/icons/Pen";
-import { Trash } from "../../assets/icons/Trash";
+import { DeleteIcon } from "../../assets/icons/DeleteIcon";
 import "./ParkingRowActions.css";
 
-export const ParkingRowActions = () => {
+interface IParkingRowActions {
+  onDeleteClick: () => void;
+}
+
+export const ParkingRowActions: React.FC<IParkingRowActions> = ({ onDeleteClick }) => {
   return (
     <td>
       <div>
         <Pen />
-        <Trash />
+        <DeleteIcon onClick={onDeleteClick} />
       </div>
     </td>
   );

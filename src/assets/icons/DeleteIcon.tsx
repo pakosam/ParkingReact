@@ -1,6 +1,11 @@
-export const Trash = () => {
+interface IDeleteIcon {
+  onClick: () => void;
+}
+
+export const DeleteIcon: React.FC<IDeleteIcon> = ({onClick}) => {
   return (
     <svg
+      onClick={onClick}
       width="16"
       height="18"
       viewBox="0 0 16 18"

@@ -28,3 +28,7 @@ export interface IRegister {
   username: string;
   password: string;
 }
+
+export interface IDelete {
+  id: number;
+}
