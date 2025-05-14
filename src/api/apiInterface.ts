@@ -32,3 +32,28 @@ export interface IRegister {
 export interface IDelete {
   id: number;
 }
+
+export interface IAddParking {
+  name: string;
+  numberOfPlaces: number;
+  openingTime: string;
+  closingTime: string;
+  pricePerHour: number;
+}
+
+export interface IUpdateParking {
+  id: number;
+  name: string;
+  numberOfPlaces: number;
+  openingTime: string;
+  closingTime: string;
+  pricePerHour: number;
+}
+
+export interface IAddEmployee {
+  name: string;
+  surname: string;
+  birthdate: string;
+  username: string;
+  password: string;
+}

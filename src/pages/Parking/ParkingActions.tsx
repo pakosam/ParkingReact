@@ -3,9 +3,10 @@ import "./ParkingActions.css";
 
 interface ParkingActionsProps {
   btnText: string;
+  onAddClick: () => void;
 }
 
-export const ParkingActions = ({ btnText }: ParkingActionsProps) => {
+export const ParkingActions: React.FC<ParkingActionsProps> = ({ btnText, onAddClick }) => {
   return (
     <div className="parking-header">
       <h3>Parkings List</h3>
@@ -13,7 +14,7 @@ export const ParkingActions = ({ btnText }: ParkingActionsProps) => {
         <div className="switch-icon">
           <SwitchButton />
         </div>
-        <button className="add-btn">{btnText}</button>
+        <button className="add-btn" onClick={onAddClick}>{btnText}</button>
       </div>
     </div>
   );

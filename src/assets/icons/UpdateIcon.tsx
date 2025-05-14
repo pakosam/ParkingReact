@@ -1,6 +1,11 @@
-export const Pen = () => {
+interface IUpdateIcon {
+  onClick: () => void;
+}
+
+export const UpdateIcon: React.FC<IUpdateIcon> = ({ onClick }) => {
   return (
     <svg
+      onClick={onClick}
       width="19"
       height="19"
       viewBox="0 0 19 19"

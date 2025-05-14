@@ -1,4 +1,4 @@
-import { Pen } from "../../assets/icons/Pen";
+import { UpdateIcon } from "../../assets/icons/UpdateIcon";
 import { DeleteIcon } from "../../assets/icons/DeleteIcon";
 import "./EmployeeRowActions.css";
 
@@ -10,7 +10,6 @@ export const EmployeeRowActions: React.FC<IEmployeeRowActions> = ({ onDeleteClic
   return (
     <td>
       <div>
-        <Pen />
         <DeleteIcon onClick={onDeleteClick} />
       </div>
     </td>
