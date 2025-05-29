@@ -3,15 +3,12 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { EmployeeActions } from "./EmployeeActions";
 import { EmployeeRowActions } from "./EmployeeRowActions";
 import React, { useEffect, useState } from "react";
-import { IEmployees, IParkings } from "../../api/apiInterface";
+import { IEmployees } from "../../api/apiInterface";
 import { data, useNavigate } from "react-router-dom";
 import { employeeRepository } from "../../repositories/employeeRepository";
-import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const EmployeeView = () => {
   const [employees, setEmployees] = useState<IEmployees[]>();
-  const navigate = useNavigate();
-  
 
   useEffect(() => {
     const allEmployees = async () => {
@@ -21,18 +18,6 @@ export const EmployeeView = () => {
 
     allEmployees();
   }, []);
-
-  const updateEmployee = (id: number) => {
-    /*const selectedParkingId = async () => {
-      const parking =  await parkingRepository.getSingleParking(id)
-      return parking.id
-    }*/
-
-    const selectedEmployee = employees?.find((employee) => employee.id === id);
-    if (selectedEmployee) {
-      navigate(`/employees/${selectedEmployee.id}/update-employee`);
-    }
-  }
 
   const deleteEmployee = async (id: number) => {
     await employeeRepository.deleteEmployee({ id });
@@ -71,7 +56,6 @@ export const EmployeeView = () => {
                 <td>{birthDate}</td>
                 <td>{parkingId}</td>
                 <EmployeeRowActions
-                  onUpdateClick={() => updateEmployee(employee.id)}
                   onDeleteClick={() => deleteEmployee(employee.id)}
                 />
               </tr>
