@@ -21,16 +21,15 @@ export const ParkingView = () => {
   }, []);
 
   const addParkingBtn = () => {
-    navigate("/parkings/add-parking")
-  }
+    navigate("/parkings/add-parking");
+  };
 
   const updateParking = async (id: number) => {
-    const dbParking = await parkingRepository.getSingleParking(id);
-
-    if (dbParking) {
-      navigate(`${dbParking.id}/update-parking`, {state: dbParking})
+    const selectedParking = parkings?.find((parking) => parking.id === id);
+    if (selectedParking) {
+      navigate(`/parkings/${selectedParking.id}/update-parking`);
     }
-  }
+  };
 
   const deleteParking = async (id: number) => {
     await parkingRepository.deleteParking({ id });
@@ -43,15 +42,16 @@ export const ParkingView = () => {
     );
 
     if (selectedParking) {
-      navigate(`${parkingId}/add-employee`, {state: selectedParking});
+      navigate(`${parkingId}/add-employee`, { state: selectedParking });
     }
   };
+  
   if (!parkings) return null;
 
   return (
     <div id="ParkingView">
       <SearchBar />
-      <ParkingActions btnText="ADD NEW PARKING" onAddClick={addParkingBtn}/>
+      <ParkingActions btnText="ADD NEW PARKING" onAddClick={addParkingBtn} />
       <div className="parking-table-container">
         <table className="table-container">
           <tr className="header-row">

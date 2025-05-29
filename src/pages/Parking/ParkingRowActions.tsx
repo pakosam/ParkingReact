@@ -11,7 +11,7 @@ export const ParkingRowActions: React.FC<IParkingRowActions> = ({ onUpdateClick,
   return (
     <td>
       <div>
-        <UpdateIcon onClick = {onUpdateClick}/>
+        <UpdateIcon onClick={onUpdateClick}/>
         <DeleteIcon onClick={onDeleteClick} />
       </div>
     </td>
