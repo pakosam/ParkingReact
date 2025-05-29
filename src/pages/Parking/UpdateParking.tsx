@@ -1,75 +1,49 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./UpdateParking.css";
 import { parkingRepository } from "../../repositories/parkingRepository";
-import { IUpdateParking } from "../../api/apiInterface";
 
 export const UpdateParking = () => {
-  const [dbParking, setDbParking] = useState<IUpdateParking>();
+  const location = useLocation();
 
-  const [id, setId] = useState(0);
-  const [name, setName] = useState("");
-  const [numberOfPlaces, setNumberOfPlaces] = useState(0);
-  const [openingTime, setOpeningTime] = useState("");
-  const [closingTime, setClosingTime] = useState("");
-  const [pricePerHour, setPricePerHour] = useState(0);
-
-  const extractIdFromPath = () => {
-    const parts = window.location.pathname.split("/");
-    console.log(parts)
-    const idIndex = parts.indexOf("parkings") + 1;
-    console.log(idIndex)
-    const id = parseInt(parts[idIndex], 10);
-    console.log(id)
-    return isNaN(id) ? null : id;
+  const dbParking = location.state as {
+    id: number;
+    name: string;
+    numberOfPlaces: number;
+    openingTime: string;
+    closingTime: string;
+    pricePerHour: number;
   };
 
-  useEffect(() => {
-    const fetchParking = async () => {
-      const id = extractIdFromPath();
-      if (!id) return;
-  
-      try {
-        const data = await parkingRepository.getSingleParking(id);
-        setDbParking(data);
-
-        setId(data.id);
-        setName(data.name);
-        setNumberOfPlaces(data.numberOfPlaces);
-        setOpeningTime(data.openingTime);
-        setClosingTime(data.closingTime);
-        setPricePerHour(data.pricePerHour);
-      } catch (err) {
-        console.error("Failed to load parking", err);
-      }
-    };
-  
-    fetchParking();
-  }, []);
-
-  
+  const [id, setId] = useState(dbParking.id);
+  const [name, setName] = useState(dbParking.name);
+  const [numberOfPlaces, setNumberOfPlaces] = useState(dbParking.numberOfPlaces);
+  const [openingTime, setOpeningTime] = useState(dbParking.openingTime);
+  const [closingTime, setClosingTime] = useState(dbParking.closingTime);
+  const [pricePerHour, setPricePerHour] = useState(dbParking.pricePerHour);
 
   const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
-    const id = extractIdFromPath();
-    if (!id) return;
-
-    const updatedParking: IUpdateParking = {
-      id,
-      name,
-      numberOfPlaces,
-      openingTime,
-      closingTime,
-      pricePerHour,
-    };
-
     try {
-      await parkingRepository.updateParking(updatedParking);
-    } catch (err) {
-      console.error("Failed to update parking", err);
-    }
+      const result = await parkingRepository.updateParking({
+        id,
+        name,
+        numberOfPlaces,
+        openingTime,
+        closingTime,
+        pricePerHour,
+      });
 
-    if (!dbParking) return null
+      dbParking.id = result.id;
+      dbParking.name = result.name;
+      dbParking.numberOfPlaces = result.numberOfPlaces;
+      dbParking.openingTime = result.openingTime;
+      dbParking.closingTime = result.closingTime;
+      dbParking.pricePerHour = result.pricePerHour;
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   return (
     <div className="update-parking">
