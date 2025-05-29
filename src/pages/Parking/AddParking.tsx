@@ -11,14 +11,6 @@ export const AddParking = () => {
   const [pricePerHour, setPricePerHour] = useState(0);
   const navigate = useNavigate();
 
-  const resetForm = () => {
-    setName("");
-    setNumberOfPlaces(0);
-    setOpeningTime("");
-    setClosingTime("");
-    setPricePerHour(0);
-  };
-
   const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -30,11 +22,10 @@ export const AddParking = () => {
         closingTime,
         pricePerHour,
       });
+      navigate("/parkings");
     } catch (error) {
       console.error("Error:", error);
     }
-
-    resetForm();
   };
   return (
     <div className="add-parking">

@@ -4,4 +4,7 @@ td {
     flex-direction: row;
     justify-content: space-around;
   }
+  svg {
+    cursor: pointer;
+  }
 }

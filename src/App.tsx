@@ -13,6 +13,7 @@ import { EmployeeView } from "./pages/Employee/EmployeeView";
 import { AddEmployee } from "./pages/Employee/AddEmployee";
 import { AddParking } from "./pages/Parking/AddParking";
 import { UpdateParking } from "./pages/Parking/UpdateParking";
+import { UpdateEmployee } from "./pages/Employee/UpdateEmployee";
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
 
         <Route path="/employees" element={<EmployeesLayout />}>
           <Route index element={<EmployeeView />} />
+          <Route
+            path="/employees/:employeeId/:parkingIdAsParam/update-employee"
+            element={<UpdateEmployee />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

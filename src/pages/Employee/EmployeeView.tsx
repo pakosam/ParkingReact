@@ -8,15 +8,16 @@ import { data, useNavigate } from "react-router-dom";
 import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const EmployeeView = () => {
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState<IEmployees[]>();
 
   useEffect(() => {
-    const allEmployees = async () => {
+    const fetchAndSetEmployees = async () => {
       const data = await employeeRepository.getAllEmployees();
       setEmployees(data);
     };
 
-    allEmployees();
+    fetchAndSetEmployees();
   }, []);
 
   const deleteEmployee = async (id: number) => {
@@ -24,12 +25,19 @@ export const EmployeeView = () => {
     setEmployees((prev) => prev?.filter((employee) => employee.id !== id));
   };
 
+  const updateEmployee = async (id: number) => {
+    const selectedEmployee = employees?.find((employee) => employee.id === id);
+    if (selectedEmployee) {
+      navigate(`/employees/${selectedEmployee.id}/${selectedEmployee.parkingId}/update-employee`);
+    }
+  };
+
   if (!employees) return null;
 
   return (
     <div id="EmployeeView">
       <SearchBar />
-      <EmployeeActions btnText="ADD NEW EMPLOYEE" />
+      <EmployeeActions />
       <div className="employee-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -56,6 +64,7 @@ export const EmployeeView = () => {
                 <td>{birthDate}</td>
                 <td>{parkingId}</td>
                 <EmployeeRowActions
+                  onUpdateClick={() => updateEmployee(employee.id)}
                   onDeleteClick={() => deleteEmployee(employee.id)}
                 />
               </tr>

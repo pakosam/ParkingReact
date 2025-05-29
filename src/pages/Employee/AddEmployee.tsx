@@ -15,14 +15,6 @@ export const AddEmployee = () => {
 
   const location = useLocation();
 
-  const resetForm = () => {
-    setName("");
-    setSurname("");
-    setBirthdate("");
-    setUsername("");
-    setPassword("");
-  };
-
   const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -40,10 +32,10 @@ export const AddEmployee = () => {
         },
         parkingID.id
       );
+      navigate("/employees");
     } catch (error) {
       console.error("Login error:", error);
     }
-    resetForm();
   };
   return (
     <div className="Register">
