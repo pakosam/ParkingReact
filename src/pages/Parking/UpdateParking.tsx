@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./UpdateParking.css";
 import { parkingRepository } from "../../repositories/parkingRepository";
 import { IUpdateParking } from "../../api/apiInterface";

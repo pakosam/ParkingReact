@@ -1,14 +1,13 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./UpdateEmployee.css";
-import { parkingRepository } from "../../repositories/parkingRepository";
 import { IUpdateEmployee } from "../../api/apiInterface";
 import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const UpdateEmployee = () => {
   const navigate = useNavigate()
 
-  const { employeeId, parkingIdAsParam } = useParams();
+  const { employeeId } = useParams();
 
   const [id, setId] = useState(0);
   const [name, setName] = useState("");

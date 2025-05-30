@@ -1,6 +1,4 @@
-import React from "react";
 import "./App.css";
-import { SideBar } from "./components/Sidebar/SideBar";
 import { ParkingView } from "./pages/Parking/ParkingView";
 import { Register } from "./pages/Register/Register";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -34,7 +32,7 @@ function App() {
           />
           <Route path="/parkings/add-parking" element={<AddParking />} />
           <Route
-            path="/parkings/:parkingId/update-parking"
+            path="/parkings/update-parking/:parkingId"
             element={<UpdateParking />}
           />
         </Route>
@@ -42,7 +40,7 @@ function App() {
         <Route path="/employees" element={<EmployeesLayout />}>
           <Route index element={<EmployeeView />} />
           <Route
-            path="/employees/:employeeId/:parkingIdAsParam/update-employee"
+            path="/employees/update-employee/:employeeId"
             element={<UpdateEmployee />}
           />
         </Route>

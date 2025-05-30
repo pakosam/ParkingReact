@@ -32,6 +32,7 @@
 
 .navbar-icon {
   height: 16px;
+  cursor: pointer;
 }
 
 .navbar-text {
@@ -45,5 +46,6 @@
 
 .logout-text {
   padding-right: 10px;
+  cursor: pointer;
 }
 

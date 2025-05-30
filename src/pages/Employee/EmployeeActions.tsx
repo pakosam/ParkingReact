@@ -1,7 +1,4 @@
-import { SwitchButton } from "../../assets/icons/SwitchButton";
 import "./EmployeeActions.css";
-
-
 
 export const EmployeeActions = () => {
   return (

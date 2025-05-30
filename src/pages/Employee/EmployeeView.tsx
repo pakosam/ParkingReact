@@ -2,9 +2,9 @@ import "./EmployeeView.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { EmployeeActions } from "./EmployeeActions";
 import { EmployeeRowActions } from "./EmployeeRowActions";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IEmployees } from "../../api/apiInterface";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const EmployeeView = () => {
@@ -26,10 +26,7 @@ export const EmployeeView = () => {
   };
 
   const updateEmployee = async (id: number) => {
-    const selectedEmployee = employees?.find((employee) => employee.id === id);
-    if (selectedEmployee) {
-      navigate(`/employees/${selectedEmployee.id}/${selectedEmployee.parkingId}/update-employee`);
-    }
+    navigate(`/employees/update-employee/${id}`);
   };
 
   if (!employees) return null;

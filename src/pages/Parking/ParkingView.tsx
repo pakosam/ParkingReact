@@ -2,9 +2,9 @@ import "./ParkingView.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
-import { data, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const ParkingView = () => {
@@ -25,10 +25,7 @@ export const ParkingView = () => {
   };
 
   const updateParking = async (id: number) => {
-    const selectedParking = parkings?.find((parking) => parking.id === id);
-    if (selectedParking) {
-      navigate(`/parkings/${selectedParking.id}/update-parking`);
-    }
+    navigate(`/parkings/update-parking/${id}`);
   };
 
   const deleteParking = async (id: number) => {
@@ -42,7 +39,7 @@ export const ParkingView = () => {
     );
 
     if (selectedParking) {
-      navigate(`${parkingId}/add-employee`, { state: selectedParking });
+      navigate(`${parkingId}/add-employee`);
     }
   };
   if (!parkings) return null;
@@ -89,7 +86,7 @@ export const ParkingView = () => {
                 <td>{closingTime}</td>
                 <td>{pricePerHour}</td>
                 <td>
-                  <button onClick={() => addEmployeeBtn(parking.id)}>
+                  <button className="add-employee-btn" onClick={() => addEmployeeBtn(parking.id)}>
                     Add employee
                   </button>
                 </td>

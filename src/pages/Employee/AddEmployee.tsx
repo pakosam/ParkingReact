@@ -1,8 +1,7 @@
 import { FormEvent, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./AddEmployee.css";
 import { employeeRepository } from "../../repositories/employeeRepository";
-import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const AddEmployee = () => {
   const [name, setName] = useState("");
@@ -10,19 +9,15 @@ export const AddEmployee = () => {
   const [birthdate, setBirthdate] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [parkingId, setParkingId] = useState(0);
+  const { parkingId } = useParams();
   const navigate = useNavigate();
 
-  const location = useLocation();
 
   const submitBtn = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      const parkingID = location.state as {
-        id: number;
-      };
-      const result = await employeeRepository.addEmployee(
+      await employeeRepository.addEmployee(
         {
           name,
           surname,
@@ -30,7 +25,7 @@ export const AddEmployee = () => {
           username,
           password,
         },
-        parkingID.id
+        Number(parkingId)
       );
       navigate("/employees");
     } catch (error) {

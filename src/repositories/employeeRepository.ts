@@ -23,7 +23,7 @@ class EmployeeRepository {
   }
 
   async updateEmployee(credentials: IUpdateEmployee, parkingId: number) {
-    const response = await axiosInstance.post(`/Employees?parkingId=${parkingId}`, credentials);
+    const response = await axiosInstance.put(`/Employees?parkingId=${parkingId}`, credentials);
     return response.data;
   }
 }
