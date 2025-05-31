@@ -2,21 +2,22 @@ import "./EmployeeView.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { EmployeeActions } from "./EmployeeActions";
 import { EmployeeRowActions } from "./EmployeeRowActions";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IEmployees } from "../../api/apiInterface";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { employeeRepository } from "../../repositories/employeeRepository";
 
 export const EmployeeView = () => {
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState<IEmployees[]>();
 
   useEffect(() => {
-    const allEmployees = async () => {
+    const fetchAndSetEmployees = async () => {
       const data = await employeeRepository.getAllEmployees();
       setEmployees(data);
     };
 
-    allEmployees();
+    fetchAndSetEmployees();
   }, []);
 
   const deleteEmployee = async (id: number) => {
@@ -24,12 +25,16 @@ export const EmployeeView = () => {
     setEmployees((prev) => prev?.filter((employee) => employee.id !== id));
   };
 
+  const updateEmployee = async (id: number) => {
+    navigate(`/employees/update-employee/${id}`);
+  };
+
   if (!employees) return null;
 
   return (
     <div id="EmployeeView">
       <SearchBar />
-      <EmployeeActions btnText="ADD NEW EMPLOYEE" />
+      <EmployeeActions />
       <div className="employee-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -56,6 +61,7 @@ export const EmployeeView = () => {
                 <td>{birthDate}</td>
                 <td>{parkingId}</td>
                 <EmployeeRowActions
+                  onUpdateClick={() => updateEmployee(employee.id)}
                   onDeleteClick={() => deleteEmployee(employee.id)}
                 />
               </tr>

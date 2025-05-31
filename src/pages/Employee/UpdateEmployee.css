@@ -1,4 +1,4 @@
-.Register {
+.update-employee {
     width: 100%;
     background-color: var(--yellow);
     display: flex;
@@ -16,21 +16,7 @@
     border-radius: 15px;
 }
 
-.header {
-    flex: 1;    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-name {
-    border-left: 7px solid var(--yellow);
-    padding-left: 10px;
-    margin-bottom: 0;
-    font-size: 38px;
-}
-
-.register-info {
+.update-employee-sentence {
     flex: 1;  
     justify-items: center;
     display: flex;
@@ -39,20 +25,10 @@
     justify-content: space-evenly;
 }
 
-.register-info h4 {
+.update-employee-sentence h4 {
     margin-bottom: 0;
     font-size: 30px;
     letter-spacing: 0.5px;
-}
-
-.register-info .sentence {
-    margin-top: 8px;
-    font-size: 16px;
-    color: #6C6C6C;
-}
-
-.register-info .sentence span {
-    letter-spacing: 0.4px;
 }
 
 .form-container {
@@ -102,5 +78,4 @@
     border: 1px solid;
     letter-spacing: 0.4px;
     border-radius: 4px;
-    cursor: pointer;
 }

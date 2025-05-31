@@ -1,6 +1,4 @@
-import React from "react";
 import "./App.css";
-import { SideBar } from "./components/Sidebar/SideBar";
 import { ParkingView } from "./pages/Parking/ParkingView";
 import { Register } from "./pages/Register/Register";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -13,6 +11,7 @@ import { EmployeeView } from "./pages/Employee/EmployeeView";
 import { AddEmployee } from "./pages/Employee/AddEmployee";
 import { AddParking } from "./pages/Parking/AddParking";
 import { UpdateParking } from "./pages/Parking/UpdateParking";
+import { UpdateEmployee } from "./pages/Employee/UpdateEmployee";
 
 function App() {
   return (
@@ -33,13 +32,17 @@ function App() {
           />
           <Route path="/parkings/add-parking" element={<AddParking />} />
           <Route
-            path="/parkings/:parkingId/update-parking"
+            path="/parkings/update-parking/:parkingId"
             element={<UpdateParking />}
           />
         </Route>
 
         <Route path="/employees" element={<EmployeesLayout />}>
           <Route index element={<EmployeeView />} />
+          <Route
+            path="/employees/update-employee/:employeeId"
+            element={<UpdateEmployee />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

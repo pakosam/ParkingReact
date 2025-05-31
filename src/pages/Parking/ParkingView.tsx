@@ -2,9 +2,9 @@ import "./ParkingView.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { ParkingActions } from "./ParkingActions";
 import { ParkingRowActions } from "./ParkingRowActions";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IParkings } from "../../api/apiInterface";
-import { data, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { parkingRepository } from "../../repositories/parkingRepository";
 
 export const ParkingView = () => {
@@ -12,25 +12,21 @@ export const ParkingView = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const allParkings = async () => {
+    const fetchAndSetParkings = async () => {
       const data = await parkingRepository.getAllParkings();
       setParkings(data);
     };
 
-    allParkings();
+    fetchAndSetParkings();
   }, []);
 
   const addParkingBtn = () => {
-    navigate("/parkings/add-parking")
-  }
+    navigate("/parkings/add-parking");
+  };
 
   const updateParking = async (id: number) => {
-    const dbParking = await parkingRepository.getSingleParking(id);
-
-    if (dbParking) {
-      navigate(`${dbParking.id}/update-parking`, {state: dbParking})
-    }
-  }
+    navigate(`/parkings/update-parking/${id}`);
+  };
 
   const deleteParking = async (id: number) => {
     await parkingRepository.deleteParking({ id });
@@ -43,7 +39,7 @@ export const ParkingView = () => {
     );
 
     if (selectedParking) {
-      navigate(`${parkingId}/add-employee`, {state: selectedParking});
+      navigate(`${parkingId}/add-employee`);
     }
   };
   if (!parkings) return null;
@@ -51,7 +47,7 @@ export const ParkingView = () => {
   return (
     <div id="ParkingView">
       <SearchBar />
-      <ParkingActions btnText="ADD NEW PARKING" onAddClick={addParkingBtn}/>
+      <ParkingActions btnText="ADD NEW PARKING" onAddClick={addParkingBtn} />
       <div className="parking-table-container">
         <table className="table-container">
           <tr className="header-row">
@@ -90,7 +86,7 @@ export const ParkingView = () => {
                 <td>{closingTime}</td>
                 <td>{pricePerHour}</td>
                 <td>
-                  <button onClick={() => addEmployeeBtn(parking.id)}>
+                  <button className="add-employee-btn" onClick={() => addEmployeeBtn(parking.id)}>
                     Add employee
                   </button>
                 </td>

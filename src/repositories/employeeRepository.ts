@@ -1,4 +1,4 @@
-import { IAddEmployee, IDelete, IEmployees } from "../api/apiInterface";
+import { IAddEmployee, IDelete, IEmployees, IUpdateEmployee } from "../api/apiInterface";
 import { axiosInstance } from "../api/axiosInstance";
 
 class EmployeeRepository {
@@ -7,6 +7,11 @@ class EmployeeRepository {
     return response.data;
   }
 
+  async getSingleEmployee(id: number) {
+      const response = await axiosInstance.get<IEmployees>(`/Employees/${id}`);
+      return response.data
+    }
+
   async deleteEmployee({ id }: IDelete): Promise<IDelete> {
     const response = await axiosInstance.delete<IDelete>(`/Employees?id=${id}`);
     return response.data;
@@ -14,6 +19,11 @@ class EmployeeRepository {
 
   async addEmployee(credentials: IAddEmployee, parkingId: number) {
     const response = await axiosInstance.post(`/Employees?parkingId=${parkingId}`, credentials);
+    return response.data;
+  }
+
+  async updateEmployee(credentials: IUpdateEmployee, parkingId: number) {
+    const response = await axiosInstance.put(`/Employees?parkingId=${parkingId}`, credentials);
     return response.data;
   }
 }

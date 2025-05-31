@@ -57,3 +57,10 @@ export interface IAddEmployee {
   username: string;
   password: string;
 }
+
+export interface IUpdateEmployee {
+  id: number;
+  name: string;
+  surname: string;
+  birthDate: string;
+}
