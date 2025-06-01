@@ -99,6 +99,7 @@
     border: 1px solid;
     letter-spacing: 0.4px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .password-footer {
